@@ -1,7 +1,8 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
-# first comment
+
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -50,3 +51,11 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+usr_name = input('Please enter character name: ')
+
+player1 = Player(usr_name, room['outside'])
+
+while True:
+    print(player1.cur_room)
+    break
