@@ -55,7 +55,22 @@ room['treasure'].s_to = room['narrow']
 usr_name = input('Please enter character name: ')
 
 player1 = Player(usr_name, room['outside'])
+print(player1.cur_room)
 
 while True:
-    print(player1.cur_room)
-    break
+    direction = input('Choose n, s, e, w or q to quit: ')
+    if direction == 'q':
+        print(f'Thanks for playing, {usr_name}!')
+        break
+    elif direction == 'n':
+        player1 = Player(usr_name, player1.cur_room.n_to)
+        print(player1.cur_room)  # TODO
+    elif direction == 's':
+        player1 = Player(usr_name, player1.cur_room.s_to)
+        print(player1.cur_room)  # TODO
+    elif direction == 'e':
+        player1 = Player(usr_name, player1.cur_room.e_to)
+        print(player1.cur_room)  # TODO
+    elif direction == 'w':
+        player1 = Player(usr_name, player1.cur_room.w_to)
+        print(player1.cur_room)  # TODO
