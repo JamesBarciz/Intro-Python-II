@@ -6,17 +6,20 @@ from player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",
+                     ["item1", "item2", "item3"]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", 
+                     ["item4"]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""",
+                     ["item5"]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -57,24 +60,24 @@ player1 = Player(usr_name, room['outside'])
 cur_room = player1.cur_room
 print(player1.cur_room)
 
+breakpoint()
+
 while True:
-    direction = input('Choose n, s, e, w or q to quit: ')
-    if direction == 'q':
+    command = input('Choose n, s, e, w or q to quit: ')
+    if command == 'q':
         print(f'Thanks for playing, {usr_name}!')
         break
     else:
         try:
-            if direction == 'n':
+            if command == 'n':
                 player1 = Player(usr_name, player1.cur_room.n_to)
-                print(player1.cur_room)  # TODO
-            elif direction == 's':
+            elif command == 's':
                 player1 = Player(usr_name, player1.cur_room.s_to)
-                print(player1.cur_room)  # TODO
-            elif direction == 'e':
+            elif command == 'e':
                 player1 = Player(usr_name, player1.cur_room.e_to)
-                print(player1.cur_room)  # TODO
-            elif direction == 'w':
+            elif command == 'w':
                 player1 = Player(usr_name, player1.cur_room.w_to)
-                print(player1.cur_room)  # TODO
+            print(player1.cur_room)
+            # In {cur_room} you will find {Room.items}
         except:
             print('Ouch!  You hit a wall!')
