@@ -1,6 +1,8 @@
 from room import Room
 from player import Player
 
+import os
+
 # Declare all the rooms
 
 
@@ -61,19 +63,43 @@ cur_room = player1.cur_room
 print(player1.cur_room)
 
 while True:
-    command = input('Choose n, s, e, w or q to quit: ')
-    if command == 'q':
+    command = input('Enter a direction or type "help" for a list of commands: ').split()
+    if command[0] == 'help':
+        print('''
+        Directions:
+        "n" - north
+        "s" - south
+        "e" - east
+        "w" - west
+
+        Commands:
+        "q" - quit game
+        "i" - display player's inventory
+        "drop <item>" - drops named item in current room
+        "get <item>" - pick up named item from current room
+        TODO
+        ''')
+    elif command[0] == 'q':
         print(f'Thanks for playing, {usr_name}!')
         break
+    elif command[0] == 'i':
+        print(f'Inventory: {", ".join(player1.items)}')
+    # elif command[0] == 'get':
+    #     add item (command[1]) to inventory
+    #     remove item(command[1]) from cur_room item list
+    # elif command[0] == 'drop':
+    #     drop item from inventory
+    #     add item to cur_room item list
     else:
         try:
-            if command == 'n':
+            os.system('cls' if os.name == 'nt' else 'clear')
+            if command[0] == 'n':
                 player1 = Player(usr_name, player1.cur_room.n_to)
-            elif command == 's':
+            elif command[0] == 's':
                 player1 = Player(usr_name, player1.cur_room.s_to)
-            elif command == 'e':
+            elif command[0] == 'e':
                 player1 = Player(usr_name, player1.cur_room.e_to)
-            elif command == 'w':
+            elif command[0] == 'w':
                 player1 = Player(usr_name, player1.cur_room.w_to)
             print(player1.cur_room)
         except:

@@ -5,10 +5,12 @@ from item import Item
 
 class Room:
     
-    def __init__(self, room_name, description, items=[]):
+    def __init__(self, room_name, description, items=[]):  # items=None):
         self.room_name = room_name
         self.description = description
         self.items = items
+        # if self.items == None
+        #     self.items = []
 
     def display_items(self):
         pass
