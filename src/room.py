@@ -16,10 +16,18 @@ class Room:
     def __str__(self):
         # Change to fit certain rooms
         #if room == treasure
-        return f'''
+        if len(self.items) == 0:
+            return f'''
 {self.room_name} - {self.description}
 
-In this room you see {self.items}.'''
+There are no items in this room.
+'''
+        else:
+            return f'''
+{self.room_name} - {self.description}
+
+In this room you see {', '.join(self.items)}.
+'''
 
     def __repr__(self):
         # Change to fit certain rooms

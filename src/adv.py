@@ -56,11 +56,9 @@ room['treasure'].s_to = room['narrow']
 
 usr_name = input('Please enter character name: ')
 
-player1 = Player(usr_name, room['outside'])
+player1 = Player(usr_name, room['outside'], ['basic_item0'])
 cur_room = player1.cur_room
 print(player1.cur_room)
-
-breakpoint()
 
 while True:
     command = input('Choose n, s, e, w or q to quit: ')
@@ -78,6 +76,5 @@ while True:
             elif command == 'w':
                 player1 = Player(usr_name, player1.cur_room.w_to)
             print(player1.cur_room)
-            # In {cur_room} you will find {Room.items}
         except:
             print('Ouch!  You hit a wall!')
