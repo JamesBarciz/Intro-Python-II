@@ -63,31 +63,18 @@ while True:
         print(f'Thanks for playing, {usr_name}!')
         break
     else:
-        if direction == 'n':
-            try:
+        try:
+            if direction == 'n':
                 player1 = Player(usr_name, player1.cur_room.n_to)
                 print(player1.cur_room)  # TODO
-            except:
-                raise ValueError('Ouch!  You hit a wall!')
-                continue
-        elif direction == 's':
-            try:
+            elif direction == 's':
                 player1 = Player(usr_name, player1.cur_room.s_to)
                 print(player1.cur_room)  # TODO
-            except:
-                raise ValueError('Ouch!  You hit a wall!')
-                continue
-        elif direction == 'e':
-            try:
+            elif direction == 'e':
                 player1 = Player(usr_name, player1.cur_room.e_to)
                 print(player1.cur_room)  # TODO
-            except:
-                raise ValueError('Ouch!  You hit a wall!')
-                continue
-        elif direction == 'w':
-            try:
+            elif direction == 'w':
                 player1 = Player(usr_name, player1.cur_room.w_to)
                 print(player1.cur_room)  # TODO
-            except:
-                raise ValueError('Ouch!  You hit a wall!')
-                continue
+        except:
+            print('Ouch!  You hit a wall!')
