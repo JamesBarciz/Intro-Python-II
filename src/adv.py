@@ -34,7 +34,6 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
-
 #
 # Main
 #
@@ -55,6 +54,7 @@ room['treasure'].s_to = room['narrow']
 usr_name = input('Please enter character name: ')
 
 player1 = Player(usr_name, room['outside'])
+cur_room = player1.cur_room
 print(player1.cur_room)
 
 while True:
@@ -62,15 +62,32 @@ while True:
     if direction == 'q':
         print(f'Thanks for playing, {usr_name}!')
         break
-    elif direction == 'n':
-        player1 = Player(usr_name, player1.cur_room.n_to)
-        print(player1.cur_room)  # TODO
-    elif direction == 's':
-        player1 = Player(usr_name, player1.cur_room.s_to)
-        print(player1.cur_room)  # TODO
-    elif direction == 'e':
-        player1 = Player(usr_name, player1.cur_room.e_to)
-        print(player1.cur_room)  # TODO
-    elif direction == 'w':
-        player1 = Player(usr_name, player1.cur_room.w_to)
-        print(player1.cur_room)  # TODO
+    else:
+        if direction == 'n':
+            try:
+                player1 = Player(usr_name, player1.cur_room.n_to)
+                print(player1.cur_room)  # TODO
+            except:
+                raise ValueError('Ouch!  You hit a wall!')
+                continue
+        elif direction == 's':
+            try:
+                player1 = Player(usr_name, player1.cur_room.s_to)
+                print(player1.cur_room)  # TODO
+            except:
+                raise ValueError('Ouch!  You hit a wall!')
+                continue
+        elif direction == 'e':
+            try:
+                player1 = Player(usr_name, player1.cur_room.e_to)
+                print(player1.cur_room)  # TODO
+            except:
+                raise ValueError('Ouch!  You hit a wall!')
+                continue
+        elif direction == 'w':
+            try:
+                player1 = Player(usr_name, player1.cur_room.w_to)
+                print(player1.cur_room)  # TODO
+            except:
+                raise ValueError('Ouch!  You hit a wall!')
+                continue
