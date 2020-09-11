@@ -12,9 +12,6 @@ class Room:
         # if self.items == None
         #     self.items = []
 
-    def display_items(self):
-        pass
-
     def __str__(self):
         # Change to fit certain rooms
         #if room == treasure

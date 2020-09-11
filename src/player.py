@@ -10,8 +10,8 @@ class Player:
     def drop_item(self, item):
         self.items.remove(str(item))
 
-    def pick_up_item(self):
-        pass
+    def pick_up_item(self, item):
+        self.items.append(str(item))
 
     def __str__(self):
         return f'''

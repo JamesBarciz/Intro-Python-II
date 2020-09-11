@@ -62,6 +62,8 @@ player1 = Player(usr_name, room['outside'], ['basic_item0'])
 cur_room = player1.cur_room
 print(player1.cur_room)
 
+# breakpoint()
+
 while True:
     command = input('Enter a direction or type "help" for a list of commands: ').split()
     if command[0] == 'help':
@@ -74,7 +76,8 @@ while True:
 
         Commands:
         "q" - quit game
-        "i" - display player's inventory
+        "room" - displays available items in current room
+        "inv" - display player's inventory
         "drop <item>" - drops named item in current room
         "get <item>" - pick up named item from current room
         TODO
@@ -82,25 +85,37 @@ while True:
     elif command[0] == 'q':
         print(f'Thanks for playing, {usr_name}!')
         break
-    elif command[0] == 'i':
-        print(f'Inventory: {", ".join(player1.items)}')
-    # elif command[0] == 'get':
-    #     add item (command[1]) to inventory
-    #     remove item(command[1]) from cur_room item list
-    # elif command[0] == 'drop':
-    #     drop item from inventory
-    #     add item to cur_room item list
+    elif command[0] == 'inv':
+        if len(player1.items) == 0:
+            print(f'\nYou have no items...\n')
+        elif len(player1.items) == 2:
+            print(f'\nInventory: {" & ".join(player1.items)}\n')
+        else:
+            print(f'\nInventory: {", ".join(player1.items)}\n')
+    elif command[0] == 'get':
+        player1.pick_up_item(command[1])
+        player1.cur_room.items.remove(command[1])
+    elif command[0] == 'drop':
+        player1.drop_item(command[1])
+        player1.cur_room.items.append(command[1])
+    elif command[0] == 'room':
+        if len(player1.cur_room.items) == 0:
+            print('\nThere are no items in this room...\n')
+        elif len(player1.cur_room.items) == 2:
+            print(f'\nItems in this room: {" & ".join(player1.cur_room.items)}\n')
+        else:
+            print(f'\nItems in this room: {", ".join(player1.cur_room.items)}\n')
     else:
         try:
             os.system('cls' if os.name == 'nt' else 'clear')
             if command[0] == 'n':
-                player1 = Player(usr_name, player1.cur_room.n_to)
+                player1 = Player(usr_name, player1.cur_room.n_to, player1.items)
             elif command[0] == 's':
-                player1 = Player(usr_name, player1.cur_room.s_to)
+                player1 = Player(usr_name, player1.cur_room.s_to, player1.items)
             elif command[0] == 'e':
-                player1 = Player(usr_name, player1.cur_room.e_to)
+                player1 = Player(usr_name, player1.cur_room.e_to, player1.items)
             elif command[0] == 'w':
-                player1 = Player(usr_name, player1.cur_room.w_to)
+                player1 = Player(usr_name, player1.cur_room.w_to, player1.items)
             print(player1.cur_room)
         except:
             print('Ouch!  You hit a wall!')
